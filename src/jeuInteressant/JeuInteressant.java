@@ -1,15 +1,12 @@
 package jeuInteressant;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
-import vue.VueJeu;
-import vue.VueListeJeu;
+import vue.VueAjouterJeu;
 
 public class JeuInteressant {
 
 	public static void main(String[] args) {
 
 	//	VueListeJeu.launch(VueListeJeu.class, args);
-		VueJeu.launch(VueJeu.class, args);
+		VueAjouterJeu.launch(VueAjouterJeu.class, args);
 	}
 }
