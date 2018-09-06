@@ -36,7 +36,7 @@ public class VueJeu extends Application {
         Jeu jeu = new Jeu("Fallout 76", "un jeu trop bien!");
         this.afficherJeu(jeu);
     }
-
+    //TODO Enlever la methode de test de jeu
     private void afficherJeu(Jeu jeu) {
         this.valeurNom.setText(jeu.getNom());
         this.valeurDescription.setText(jeu.getDescription());
