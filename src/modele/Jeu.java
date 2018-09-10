@@ -1,6 +1,7 @@
 package modele;
 
 public class Jeu {
+    protected int id;
     protected String nom;
     protected String description;
 
@@ -15,7 +16,9 @@ public class Jeu {
     }
 
 
+    public int getId() { return id; }
 
+    public void setId(int id) { this.id = id; }
 
     public String getNom() {
         return nom;
@@ -32,6 +35,7 @@ public class Jeu {
     public void setDescription(String description) {
         this.description = description;
     }
+
 
 
 }
