@@ -47,6 +47,20 @@ public class JeuDAO {
         return instance;
     }
 
+    //TODO faire toute les methode vide
+    public List<Jeu>listerJeu()
+    {
+        return null;
+    }
+
+    public void ajouterJeu(Jeu jeu)
+    {
+
+    }
+    public void modifierJeu(Jeu jeu)
+    {
+
+    }
 
 
 
