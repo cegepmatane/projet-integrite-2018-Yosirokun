@@ -1,5 +1,4 @@
-package jeuInteressant;
-
+import vue.NavigateurDeVue;
 import vue.VueAjouterJeu;
 
 public class JeuInteressant {
@@ -7,6 +6,6 @@ public class JeuInteressant {
 	public static void main(String[] args) {
 
 	//	VueListeJeu.launch(VueListeJeu.class, args);
-		VueAjouterJeu.launch(VueAjouterJeu.class, args);
+		NavigateurDeVue.launch(NavigateurDeVue.class, args);
 	}
 }
