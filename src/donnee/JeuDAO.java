@@ -2,9 +2,7 @@ package donnee;
 
 import modele.Jeu;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +16,7 @@ public class JeuDAO {
     }
 
     private static String BASEDEDONNEES_DRIVER = "org.postgresql.Driver";
-    private static String BASEDEDONNEES_URL = "jdbc:postgresql://localhost:5432/bergerie";
+    private static String BASEDEDONNEES_URL = "jdbc:postgresql://localhost:5432/jeu_interessant";
     private static String BASEDEDONNEES_USAGER = "postgres";
     private static String BASEDEDONNEES_MOTDEPASSE = "test";
     private Connection connection = null;
@@ -50,15 +48,48 @@ public class JeuDAO {
     //TODO faire toute les methode vide
     public List<Jeu>listerJeu()
     {
-        return null;
+        List<Jeu> listeJeux = new ArrayList<>();
+        Statement requeteListeJeux;
+
+        try {
+            requeteListeJeux = connection.createStatement();
+            ResultSet curseurListeJeux = requeteListeJeux.executeQuery("SELECT * FROM jeu");
+            while (curseurListeJeux.next())
+            {
+                int id = curseurListeJeux.getInt("id");
+                String nom = curseurListeJeux.getString("nom");
+                String description = curseurListeJeux.getString("description");
+                Jeu jeu = new Jeu(nom, description);
+                jeu.setId(id);
+                listeJeux.add(jeu);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return listeJeux;
     }
 
     public void ajouterJeu(Jeu jeu)
     {
-
+        try {
+            Statement requeteAjouterJeu = connection.createStatement();
+            String requeteSqlAjouter = "INSERT INTO jeu(nom, description) VALUES('"+ jeu.getNom() + "','"+jeu.getDescription()+"')";
+            requeteAjouterJeu.execute(requeteSqlAjouter);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
     public void modifierJeu(Jeu jeu)
     {
+        try {
+            Statement requeteModifierJeu = connection.createStatement();
+
+            String sqlModifier = "UPDATE jeu SET nom = '" + jeu.getNom() + "', description = '" + jeu.getDescription() + "' WHERE id = " + jeu.getId();
+            requeteModifierJeu.execute(sqlModifier);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
 
