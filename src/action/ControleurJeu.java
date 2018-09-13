@@ -6,11 +6,12 @@ import vue.VueAjouterJeu;
 import vue.VueJeu;
 import vue.VueListeJeu;
 
+
 public class ControleurJeu {
     private NavigateurDeVue navigateur;
-    private VueListeJeu vueListeJeu = null;
-    private VueJeu vueJeu = null;
-    private VueAjouterJeu vueAjouterJeu = null;
+    private VueListeJeu vueListeJeu;
+    private VueJeu vueJeu;
+    private VueAjouterJeu vueAjouterJeu;
     private static ControleurJeu instance = null;
 
     JeuDAO accesseurJeu = null;
@@ -35,6 +36,7 @@ public class ControleurJeu {
         this.navigateur = navigateur;
         this.vueAjouterJeu = navigateur.getVueAjouterJeu();
         this.vueJeu = navigateur.getVueJeu();
+        this.vueListeJeu = navigateur.getVueListeJeu();
     }
 
 

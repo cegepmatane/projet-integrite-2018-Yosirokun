@@ -1,5 +1,4 @@
 import vue.NavigateurDeVue;
-import vue.VueAjouterJeu;
 
 public class JeuInteressant {
 
