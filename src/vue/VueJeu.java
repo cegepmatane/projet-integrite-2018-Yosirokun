@@ -8,16 +8,17 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import modele.Jeu;
 
-public class VueJeu extends Application {
+public class VueJeu extends Scene {
     protected Label valeurNom;
     protected Label valeurDescription;
     private Object afficherJeu;
 
 
-    @Override
-    public void start(Stage stage) throws Exception {
-        Pane panneau = new Pane();
-        GridPane grilleJeu = new GridPane();
+
+    public VueJeu() {
+        super(new GridPane(), 400, 400);
+
+        GridPane grilleJeu = (GridPane) this.getRoot();
 
         valeurNom = new Label("");
         grilleJeu.add(new Label("Nom: "),0,0);
@@ -27,9 +28,6 @@ public class VueJeu extends Application {
         grilleJeu.add(new Label("Description: "),0,1);
         grilleJeu.add(valeurDescription, 1, 1);
 
-        panneau.getChildren().add(grilleJeu);
-        stage.setScene(new Scene(panneau, 400, 400));
-        stage.show();
 
         //pour tester
 
