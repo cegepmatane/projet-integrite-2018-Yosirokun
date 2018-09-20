@@ -1,5 +1,6 @@
 package vue;
 
+import action.ControleurJeu;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -11,12 +12,15 @@ public class NavigateurDeVue extends Application {
     private VueAjouterJeu vueAjouterJeu = null;
     private VueJeu vueJeu = null;
     private VueModifierJeu vueModifierJeu = null;
+    protected ControleurJeu controleur;
 
     public NavigateurDeVue() {
         this.vueAjouterJeu = new VueAjouterJeu();
         this.vueJeu = new VueJeu();
         this.vueListeJeu = new VueListeJeu();
         this.vueModifierJeu = new VueModifierJeu();
+        this.controleur = ControleurJeu.getInstance();
+
     }
 
     @Override
@@ -25,8 +29,13 @@ public class NavigateurDeVue extends Application {
 
         this.stade.setScene(null);
         this.stade.show();
+        this.vueModifierJeu.setControleur(this.controleur);
+        this.vueAjouterJeu.setControleur(this.controleur);
+        this.vueJeu.setControleur(this.controleur);
+        this.vueListeJeu.setControleur(this.controleur);
 
-        //TODO metre le controlleur
+
+
 
 
     }
