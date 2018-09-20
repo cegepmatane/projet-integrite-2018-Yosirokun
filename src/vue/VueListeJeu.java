@@ -6,14 +6,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class VueListeJeu extends Application {
-    @Override
-    public void start(Stage stade) throws Exception {
-        Pane panneau = new Pane();
-        GridPane grilleJeux = new GridPane();
+public class VueListeJeu extends Scene {
 
-        panneau.getChildren().add(grilleJeux);
-        stade.setScene(new Scene(panneau, 400, 400));
-        stade.show();
+    public VueListeJeu() {
+        super(new GridPane(), 400, 400);
+        GridPane grilleJeux = (GridPane) this.getRoot();
+
+
     }
 }
