@@ -10,12 +10,13 @@ public class NavigateurDeVue extends Application {
     private VueListeJeu vueListeJeu = null;
     private VueAjouterJeu vueAjouterJeu = null;
     private VueJeu vueJeu = null;
+    private VueModifierJeu vueModifierJeu = null;
 
-    public NavigateurDeVue()
-    {
+    public NavigateurDeVue() {
         this.vueAjouterJeu = new VueAjouterJeu();
         this.vueJeu = new VueJeu();
         this.vueListeJeu = new VueListeJeu();
+        this.vueModifierJeu = new VueModifierJeu();
     }
 
     @Override
@@ -42,5 +43,27 @@ public class NavigateurDeVue extends Application {
         return vueJeu;
     }
 
+    public VueModifierJeu getVueModifierJeu() {
+        return vueModifierJeu;
+    }
 
+    public void naviguerVueJeu() {
+        stade.setScene(this.vueJeu);
+        stade.show();
+    }
+
+    public void naviguerVueAjouterJeu() {
+        stade.setScene(this.vueAjouterJeu);
+        stade.show();
+    }
+
+    public void naviguerVueListeJeu() {
+        stade.setScene(this.vueListeJeu);
+        stade.show();
+    }
+    public void naviguerVueModifier()
+    {
+        stade.setScene(this.vueModifierJeu);
+        stade.show();
+    }
 }
