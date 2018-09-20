@@ -16,32 +16,25 @@ public class ControleurJeu {
 
     JeuDAO accesseurJeu = null;
 
-    private ControleurJeu()
-    {
+    private ControleurJeu() {
         this.accesseurJeu = JeuDAO.getInstance();
     }
 
     //instance singleton
-    public static ControleurJeu getInstance()
-    {
-        if(null == instance)
-        {
+    public static ControleurJeu getInstance() {
+        if (null == instance) {
             instance = new ControleurJeu();
         }
         return instance;
     }
 
-    public void activerVues (NavigateurDeVue navigateur)
-    {
+    public void activerVues(NavigateurDeVue navigateur) {
         this.navigateur = navigateur;
         this.vueAjouterJeu = navigateur.getVueAjouterJeu();
         this.vueJeu = navigateur.getVueJeu();
         this.vueListeJeu = navigateur.getVueListeJeu();
+        this.vueListeJeu.afficherListeJeu(accesseurJeu.listerJeu());
     }
-
-
-
-
 
 
 }

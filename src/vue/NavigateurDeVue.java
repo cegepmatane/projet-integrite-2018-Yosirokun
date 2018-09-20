@@ -20,6 +20,7 @@ public class NavigateurDeVue extends Application {
         this.vueListeJeu = new VueListeJeu();
         this.vueModifierJeu = new VueModifierJeu();
         this.controleur = ControleurJeu.getInstance();
+        this.controleur.activerVues(this);
 
     }
 
@@ -29,12 +30,13 @@ public class NavigateurDeVue extends Application {
 
         this.stade.setScene(null);
         this.stade.show();
+
         this.vueModifierJeu.setControleur(this.controleur);
         this.vueAjouterJeu.setControleur(this.controleur);
         this.vueJeu.setControleur(this.controleur);
         this.vueListeJeu.setControleur(this.controleur);
 
-
+        naviguerVueListeJeu();
 
 
 

@@ -45,7 +45,7 @@ public class JeuDAO {
         return instance;
     }
 
-    //TODO faire toute les methode vide
+
     public List<Jeu>listerJeu()
     {
         List<Jeu> listeJeux = new ArrayList<>();
