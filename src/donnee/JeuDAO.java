@@ -15,25 +15,13 @@ public class JeuDAO {
         return listeJeu;
     }
 
-    private static String BASEDEDONNEES_DRIVER = "org.postgresql.Driver";
-    private static String BASEDEDONNEES_URL = "jdbc:postgresql://localhost:5432/jeu_interessant";
-    private static String BASEDEDONNEES_USAGER = "postgres";
-    private static String BASEDEDONNEES_MOTDEPASSE = "test";
+
     private Connection connection = null;
     public static JeuDAO instance = null;
 
     public JeuDAO()
     {
-        try {
-            Class.forName(BASEDEDONNEES_DRIVER);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        try {
-            connection = DriverManager.getConnection(BASEDEDONNEES_URL, BASEDEDONNEES_USAGER, BASEDEDONNEES_MOTDEPASSE);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+       this.connection = BaseDeDonnees.getInstance().getConnection();
     }
 
     public static JeuDAO getInstance()
