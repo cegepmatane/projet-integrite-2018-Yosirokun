@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JeuDAO {
+public class JeuDAO implements JeuSQL{
     public List<Jeu> simulerListeJeu()
     {
         List<Jeu> listeJeu = new ArrayList<>();
@@ -41,7 +41,7 @@ public class JeuDAO {
 
         try {
             requeteListeJeux = connection.createStatement();
-            ResultSet curseurListeJeux = requeteListeJeux.executeQuery(JeuSQL.SQL_LISTER_JEU);
+            ResultSet curseurListeJeux = requeteListeJeux.executeQuery(SQL_LISTER_JEU);
             while (curseurListeJeux.next())
             {
                 int id = curseurListeJeux.getInt("id");
@@ -61,7 +61,7 @@ public class JeuDAO {
     public void ajouterJeu(Jeu jeu)
     {
         try {
-            PreparedStatement requeteAjouterJeu = connection.prepareStatement(JeuSQL.SQL_AJOUTER_JEU);
+            PreparedStatement requeteAjouterJeu = connection.prepareStatement(SQL_AJOUTER_JEU);
             requeteAjouterJeu.setString(1, jeu.getNom());
             requeteAjouterJeu.setString(2, jeu.getDescription());
             requeteAjouterJeu.execute();
@@ -72,7 +72,7 @@ public class JeuDAO {
     public void modifierJeu(Jeu jeu)
     {
         try {
-            PreparedStatement requeteModifierJeu = connection.prepareStatement(JeuSQL.SQL_MODIFIER_JEU);
+            PreparedStatement requeteModifierJeu = connection.prepareStatement(SQL_MODIFIER_JEU);
             requeteModifierJeu.setString(1, jeu.getNom());
             requeteModifierJeu.setString(2, jeu.getDescription());
             requeteModifierJeu.setInt(3, jeu.getId());
