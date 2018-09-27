@@ -6,9 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import modele.Jeu;
 
 public class VueAjouterJeu extends Scene {
     protected ControleurJeu controleur = null;
+    TextField texteNom;
+    TextField texteDescription;
 
     public ControleurJeu getControleur() {
         return controleur;
@@ -21,8 +24,8 @@ public class VueAjouterJeu extends Scene {
     public VueAjouterJeu() {
         super(new GridPane(), 400, 40);
         GridPane grilleAjouter = (GridPane) this.getRoot();
-        TextField texteNom = new TextField();
-        TextField texteDescription = new TextField();
+        this.texteNom = new TextField();
+        this.texteDescription = new TextField();
         Button btnConfirmer = new Button("Confirmer");
         //le bonton est seulement pour l'estétique pour l'instant
         grilleAjouter.add(new Label("Nom: "), 0, 0);
@@ -32,5 +35,10 @@ public class VueAjouterJeu extends Scene {
 
         grilleAjouter.add(btnConfirmer, 1, 2);
 
+    }
+    public Jeu demanderJeu()
+    {
+        Jeu jeu = new Jeu(this.texteNom.getText(), this.texteDescription.getText());
+        return jeu;
     }
 }
