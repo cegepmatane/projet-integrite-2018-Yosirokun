@@ -41,7 +41,7 @@ public class JeuDAO {
 
         try {
             requeteListeJeux = connection.createStatement();
-            ResultSet curseurListeJeux = requeteListeJeux.executeQuery("SELECT * FROM jeu");
+            ResultSet curseurListeJeux = requeteListeJeux.executeQuery(JeuSQL.SQL_LISTER_JEU);
             while (curseurListeJeux.next())
             {
                 int id = curseurListeJeux.getInt("id");
@@ -61,9 +61,10 @@ public class JeuDAO {
     public void ajouterJeu(Jeu jeu)
     {
         try {
-            Statement requeteAjouterJeu = connection.createStatement();
-            String requeteSqlAjouter = "INSERT INTO jeu(nom, description) VALUES('"+ jeu.getNom() + "','"+jeu.getDescription()+"')";
-            requeteAjouterJeu.execute(requeteSqlAjouter);
+            PreparedStatement requeteAjouterJeu = connection.prepareStatement(JeuSQL.SQL_AJOUTER_JEU);
+            requeteAjouterJeu.setString(1, jeu.getNom());
+            requeteAjouterJeu.setString(2, jeu.getDescription());
+            requeteAjouterJeu.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -71,10 +72,13 @@ public class JeuDAO {
     public void modifierJeu(Jeu jeu)
     {
         try {
-            Statement requeteModifierJeu = connection.createStatement();
+            PreparedStatement requeteModifierJeu = connection.prepareStatement(JeuSQL.SQL_MODIFIER_JEU);
+            requeteModifierJeu.setString(1, jeu.getNom());
+            requeteModifierJeu.setString(2, jeu.getDescription());
+            requeteModifierJeu.setInt(3, jeu.getId());
 
-            String sqlModifier = "UPDATE jeu SET nom = '" + jeu.getNom() + "', description = '" + jeu.getDescription() + "' WHERE id = " + jeu.getId();
-            requeteModifierJeu.execute(sqlModifier);
+
+            requeteModifierJeu.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
