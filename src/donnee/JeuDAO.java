@@ -6,9 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JeuDAO implements JeuSQL{
-    public List<Jeu> simulerListeJeu()
-    {
+public class JeuDAO implements JeuSQL {
+    public List<Jeu> simulerListeJeu() {
         List<Jeu> listeJeu = new ArrayList<>();
         listeJeu.add(new Jeu("Death stranding", "un jeu de Hideo Kojima"));
         listeJeu.add(new Jeu("Forza horizon 4", "Un nouveau jeu de course marqué Microsoft"));
@@ -19,31 +18,26 @@ public class JeuDAO implements JeuSQL{
     private Connection connection = null;
     public static JeuDAO instance = null;
 
-    public JeuDAO()
-    {
-       this.connection = BaseDeDonnees.getInstance().getConnection();
+    public JeuDAO() {
+        this.connection = BaseDeDonnees.getInstance().getConnection();
     }
 
-    public static JeuDAO getInstance()
-    {
-        if(null == instance)
-        {
+    public static JeuDAO getInstance() {
+        if (null == instance) {
             instance = new JeuDAO();
         }
         return instance;
     }
 
 
-    public List<Jeu>listerJeu()
-    {
+    public List<Jeu> listerJeu() {
         List<Jeu> listeJeux = new ArrayList<>();
         Statement requeteListeJeux;
 
         try {
             requeteListeJeux = connection.createStatement();
             ResultSet curseurListeJeux = requeteListeJeux.executeQuery(SQL_LISTER_JEU);
-            while (curseurListeJeux.next())
-            {
+            while (curseurListeJeux.next()) {
                 int id = curseurListeJeux.getInt("id");
                 String nom = curseurListeJeux.getString("nom");
                 String description = curseurListeJeux.getString("description");
@@ -58,8 +52,7 @@ public class JeuDAO implements JeuSQL{
         return listeJeux;
     }
 
-    public void ajouterJeu(Jeu jeu)
-    {
+    public void ajouterJeu(Jeu jeu) {
         try {
             PreparedStatement requeteAjouterJeu = connection.prepareStatement(SQL_AJOUTER_JEU);
             requeteAjouterJeu.setString(1, jeu.getNom());
@@ -69,8 +62,8 @@ public class JeuDAO implements JeuSQL{
             e.printStackTrace();
         }
     }
-    public void modifierJeu(Jeu jeu)
-    {
+
+    public void modifierJeu(Jeu jeu) {
         try {
             PreparedStatement requeteModifierJeu = connection.prepareStatement(SQL_MODIFIER_JEU);
             requeteModifierJeu.setString(1, jeu.getNom());
@@ -85,8 +78,28 @@ public class JeuDAO implements JeuSQL{
 
     }
 
+    public Jeu repporterJeu(int idJeu) {
+        PreparedStatement requeteJeu;
 
+        try {
+            requeteJeu = connection.prepareStatement(SQL_RAPPORTER_JEU);
+            requeteJeu.setInt(1, idJeu);
 
+            ResultSet curseurJeu = requeteJeu.executeQuery();
+            curseurJeu.next();
+            int id = curseurJeu.getInt("id");
+            String nom = curseurJeu.getString("nom");
+            String description = curseurJeu.getString("description");
+
+            Jeu jeu = new Jeu(nom, description);
+            jeu.setId(id);
+            return jeu;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
 
 
 }

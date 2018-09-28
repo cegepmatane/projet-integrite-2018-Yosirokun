@@ -1,20 +1,18 @@
 package action;
 
 import donnee.JeuDAO;
-import vue.NavigateurDeVue;
-import vue.VueAjouterJeu;
-import vue.VueJeu;
-import vue.VueListeJeu;
+import modele.Jeu;
+import vue.*;
 
 
 public class ControleurJeu {
+    private static ControleurJeu instance = null;
+    private JeuDAO accesseurJeu = null;
     private NavigateurDeVue navigateur;
     private VueListeJeu vueListeJeu;
     private VueJeu vueJeu;
     private VueAjouterJeu vueAjouterJeu;
-    private static ControleurJeu instance = null;
-
-    JeuDAO accesseurJeu = null;
+    private VueModifierJeu vueModifierJeu;
 
     private ControleurJeu() {
         this.accesseurJeu = JeuDAO.getInstance();
@@ -32,9 +30,32 @@ public class ControleurJeu {
         this.navigateur = navigateur;
         this.vueAjouterJeu = navigateur.getVueAjouterJeu();
         this.vueJeu = navigateur.getVueJeu();
+        this.vueModifierJeu = navigateur.getVueModifierJeu();
         this.vueListeJeu = navigateur.getVueListeJeu();
         this.vueListeJeu.afficherListeJeu(accesseurJeu.listerJeu());
     }
 
+    public void notifierAjouterJeu() {
+        Jeu jeu = this.navigateur.getVueAjouterJeu().demanderJeu();
+        this.accesseurJeu.ajouterJeu(jeu);
+        this.vueListeJeu.afficherListeJeu(this.accesseurJeu.listerJeu());
+        this.navigateur.naviguerVueListeJeu();
+    }
 
+
+    public void notifierEnregisterJeu() {
+        Jeu jeu = this.navigateur.getVueModifierJeu().demandeJeu();
+        this.accesseurJeu.modifierJeu(jeu);
+        this.vueListeJeu.afficherListeJeu(this.accesseurJeu.listerJeu());
+        this.navigateur.naviguerVueListeJeu();
+    }
+
+    public void notifierNaviguerModifierJeu(int idJeu) {
+        this.vueModifierJeu.afficherJeu(this.accesseurJeu.repporterJeu(idJeu));
+        this.navigateur.naviguerVueModifier();
+    }
+
+    public void notifierNaviguerAjouterJeu() {
+        this.navigateur.getVueAjouterJeu();
+    }
 }
