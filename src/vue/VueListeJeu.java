@@ -1,6 +1,8 @@
 package vue;
 
 import action.ControleurJeu;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,11 +33,24 @@ public class VueListeJeu extends Scene {
         this.grilleJeux.add(new Label("description"), 1, numero);
         for(Jeu jeu : listeJeu)
         {
+            Button btnModifierJeu = new Button("Modifier");
+            btnModifierJeu.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    controleur.notifierNaviguerModifierJeu();
+                }
+            });
             numero++;
             this.grilleJeux.add(new Label(jeu.getNom()),0, numero);
             this.grilleJeux.add(new Label(jeu.getDescription()),1,numero);
 
         }
+        this.actionNaviguerVueAjouter.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                controleur.notifierNaviguerAjouterJeu();
+            }
+        });
     }
 
     public ControleurJeu getControleur() {
