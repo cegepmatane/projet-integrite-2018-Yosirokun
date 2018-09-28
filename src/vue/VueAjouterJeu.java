@@ -1,6 +1,8 @@
 package vue;
 
 import action.ControleurJeu;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,7 +24,7 @@ public class VueAjouterJeu extends Scene {
     }
 
     public VueAjouterJeu() {
-        super(new GridPane(), 400, 40);
+        super(new GridPane(), 400, 400);
         GridPane grilleAjouter = (GridPane) this.getRoot();
         this.texteNom = new TextField();
         this.texteDescription = new TextField();
@@ -33,6 +35,12 @@ public class VueAjouterJeu extends Scene {
         grilleAjouter.add(new Label("Description: "), 0, 1);
         grilleAjouter.add(texteDescription, 1, 1);
 
+        btnConfirmer.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                controleur.notifierAjouterJeu();
+            }
+        });
         grilleAjouter.add(btnConfirmer, 1, 2);
 
     }
