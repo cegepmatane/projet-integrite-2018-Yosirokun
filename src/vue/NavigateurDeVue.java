@@ -8,10 +8,10 @@ public class NavigateurDeVue extends Application {
 
     private Stage stade;
 
-    private VueListeJeu vueListeJeu = null;
-    private VueAjouterJeu vueAjouterJeu = null;
-    private VueJeu vueJeu = null;
-    private VueModifierJeu vueModifierJeu = null;
+    private VueListeJeu vueListeJeu;
+    private VueAjouterJeu vueAjouterJeu;
+    private VueJeu vueJeu;
+    private VueModifierJeu vueModifierJeu;
     protected ControleurJeu controleur;
 
     public NavigateurDeVue() {
@@ -19,8 +19,7 @@ public class NavigateurDeVue extends Application {
         this.vueJeu = new VueJeu();
         this.vueListeJeu = new VueListeJeu();
         this.vueModifierJeu = new VueModifierJeu();
-        this.controleur = ControleurJeu.getInstance();
-        this.controleur.activerVues(this);
+
 
     }
 
@@ -31,12 +30,14 @@ public class NavigateurDeVue extends Application {
         this.stade.setScene(null);
         this.stade.show();
 
+        this.controleur = ControleurJeu.getInstance();
+        this.controleur.activerVues(this);
         this.vueModifierJeu.setControleur(this.controleur);
         this.vueAjouterJeu.setControleur(this.controleur);
         this.vueJeu.setControleur(this.controleur);
         this.vueListeJeu.setControleur(this.controleur);
 
-        naviguerVueListeJeu();
+
 
 
 
