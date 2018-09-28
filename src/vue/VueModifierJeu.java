@@ -31,7 +31,7 @@ public class VueModifierJeu extends Scene {
         this.actionEnregisterChangement.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //TODO notifier Enregistrer Jeu dans le controlleur
+                controleur.notifierEnregisterJeu();
             }
         });
         valeurNom = new TextField();
