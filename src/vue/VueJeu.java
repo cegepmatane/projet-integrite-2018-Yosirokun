@@ -38,8 +38,8 @@ public class VueJeu extends Scene {
 
         //pour tester
 
-        Jeu jeu = new Jeu("Fallout 76", "un jeu trop bien!");
-        this.afficherJeu(jeu);
+        /*Jeu jeu = new Jeu("Fallout 76", "un jeu trop bien!");
+        this.afficherJeu(jeu);*/
     }
 
     //TODO Enlever la methode de test de jeu

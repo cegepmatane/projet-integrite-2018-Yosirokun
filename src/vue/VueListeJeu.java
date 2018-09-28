@@ -37,7 +37,7 @@ public class VueListeJeu extends Scene {
             btnModifierJeu.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    controleur.notifierNaviguerModifierJeu();
+                    controleur.notifierNaviguerModifierJeu(jeu.getId());
                 }
             });
             numero++;
@@ -51,10 +51,6 @@ public class VueListeJeu extends Scene {
                 controleur.notifierNaviguerAjouterJeu();
             }
         });
-    }
-
-    public ControleurJeu getControleur() {
-        return controleur;
     }
 
     public void setControleur(ControleurJeu controleur) {
