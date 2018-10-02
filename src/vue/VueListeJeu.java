@@ -51,6 +51,7 @@ public class VueListeJeu extends Scene {
                 controleur.notifierNaviguerAjouterJeu();
             }
         });
+        this.grilleJeux.add(actionNaviguerVueAjouter, 1, ++numero);
     }
 
     public void setControleur(ControleurJeu controleur) {

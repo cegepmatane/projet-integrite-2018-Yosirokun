@@ -1,13 +1,15 @@
 package action;
 
 import donnee.JeuDAO;
+import donnee.StudioDAO;
 import modele.Jeu;
 import vue.*;
 
 
 public class ControleurJeu {
     private static ControleurJeu instance = null;
-    private JeuDAO accesseurJeu = null;
+    private JeuDAO accesseurJeu;
+    private StudioDAO accesseurStudio;
     private NavigateurDeVue navigateur;
     private VueListeJeu vueListeJeu;
     private VueJeu vueJeu;
@@ -15,7 +17,9 @@ public class ControleurJeu {
     private VueModifierJeu vueModifierJeu;
 
     private ControleurJeu() {
+
         this.accesseurJeu = JeuDAO.getInstance();
+        this.accesseurStudio = StudioDAO.getInstance();
     }
 
     //instance singleton
@@ -53,10 +57,11 @@ public class ControleurJeu {
 
     public void notifierNaviguerModifierJeu(int idJeu) {
         this.vueModifierJeu.afficherJeu(this.accesseurJeu.repporterJeu(idJeu));
+        this.vueModifierJeu.afficherListeStudio(this.accesseurStudio.simulerListeStudio());
         this.navigateur.naviguerVueModifier();
     }
 
     public void notifierNaviguerAjouterJeu() {
-        this.navigateur.getVueAjouterJeu();
+        this.navigateur.naviguerVueAjouterJeu();
     }
 }
