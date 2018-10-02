@@ -18,7 +18,7 @@ public class VueAjouterJeu extends Scene {
     protected Button btnConfirmer;
 
     public VueAjouterJeu() {
-        super(new GridPane(), 400, 400);
+        super(new VBox(), 400, 400);
         VBox panneau = (VBox) this.getRoot();
         GridPane grilleAjouter = new GridPane();
         this.texteNom = new TextField();

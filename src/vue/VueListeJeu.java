@@ -43,11 +43,11 @@ public class VueListeJeu extends Scene {
             numero++;
             this.grilleJeux.add(new Label(jeu.getNom()),0, numero);
             this.grilleJeux.add(new Label(jeu.getDescription()),1,numero);
-
+            this.grilleJeux.add(btnModifierJeu, 2, numero);
         }
         this.actionNaviguerVueAjouter.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public  void handle(ActionEvent event) {
                 controleur.notifierNaviguerAjouterJeu();
             }
         });

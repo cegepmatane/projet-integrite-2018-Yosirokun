@@ -33,6 +33,7 @@ public class ControleurJeu {
         this.vueModifierJeu = navigateur.getVueModifierJeu();
         this.vueListeJeu = navigateur.getVueListeJeu();
         this.vueListeJeu.afficherListeJeu(accesseurJeu.listerJeu());
+        this.navigateur.naviguerVueListeJeu();
     }
 
     public void notifierAjouterJeu() {
