@@ -58,6 +58,7 @@ public class VueModifierJeu extends Scene {
 
         panneau.getChildren().add(new Label("Modifier un jeu"));
         panneau.getChildren().add(grilleJeu);
+        panneau.getChildren().add(this.actionEnregisterChangement);
 
     }
 
@@ -71,11 +72,13 @@ public class VueModifierJeu extends Scene {
         int numero = 0;
         for (Studio studio : listeStudio) {
             this.grilleListeStudio.add(new Label(studio.getNom()), 0, numero);
-            this.grilleListeStudio.add(new Label(studio.getNom()),1, numero);
+            this.grilleListeStudio.add(new Label(studio.getDescription()),1, numero);
             this.grilleListeStudio.add(new Button("modifier"), 2, numero);
             this.grilleListeStudio.add(new Button("supprimer"), 3, numero);
             numero++;
         }
+        panneau.getChildren().add(grilleListeStudio);
+        panneau.getChildren().add(actionAjouterStudio);
     }
 
     public Jeu demandeJeu() {
