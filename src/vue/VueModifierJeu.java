@@ -35,6 +35,7 @@ public class VueModifierJeu extends Scene {
         this.actionAjouterStudio = new Button("Ajouter un studio");
         this.actionEnregisterChangement = new Button("Enregistrer");
 
+
         this.actionAjouterStudio.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -59,7 +60,8 @@ public class VueModifierJeu extends Scene {
         panneau.getChildren().add(new Label("Modifier un jeu"));
         panneau.getChildren().add(grilleJeu);
         panneau.getChildren().add(this.actionEnregisterChangement);
-
+        panneau.getChildren().add(grilleListeStudio);   
+        panneau.getChildren().add(actionAjouterStudio); 
     }
 
     public void afficherJeu(Jeu jeu) {
@@ -77,8 +79,8 @@ public class VueModifierJeu extends Scene {
             this.grilleListeStudio.add(new Button("supprimer"), 3, numero);
             numero++;
         }
-        panneau.getChildren().add(grilleListeStudio);
-        panneau.getChildren().add(actionAjouterStudio);
+
+
     }
 
     public Jeu demandeJeu() {
